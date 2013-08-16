@@ -1,7 +1,7 @@
 var application_root = __dirname,
   express = require('express'),
   path = require( 'path' ), //Utilities for dealing with file paths
-  wines = require('./routes/employee');
+  api = require('./routes/employee');
  
 var app = express();
 
@@ -23,9 +23,9 @@ app.configure( function() {
   app.use( express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
-app.get('/employees/:id/reports', wines.findByManager);
-app.get('/employees/:id', wines.findById);
-app.get('/employees', wines.findAll);
+app.get('/employees/:id/reports', api.findByManager);
+app.get('/employees/:id', api.findById);
+app.get('/employees', api.findAll);
 
 //Start server
 var port = process.env.PORT || 3000;
