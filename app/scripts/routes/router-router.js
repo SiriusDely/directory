@@ -44,7 +44,7 @@ define([
       }
       this.contactView.render();
       this.shellView.selectMenuItem('contact-menu');
-    },
+    }
 
   });
 
