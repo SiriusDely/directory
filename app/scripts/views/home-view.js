@@ -13,9 +13,18 @@ define([
 
     el : '#inside',
 
+    events:{
+      "click #showMeBtn":"showMeBtnClick"
+    },
+
     render:function () {
       this.$el.html(this.template());
       return this;
+    },
+
+    showMeBtnClick:function (event) {
+      console.log("showMeBtnClick");
+      event.preventDefault();
     }
 
   });
