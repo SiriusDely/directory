@@ -15,9 +15,9 @@ define([
 
     initialize: function () {
       console.log('initialize');
-      var shellView = new ShellView();
-      shellView.render();
-      $('body').html(shellView.el);
+      this.shellView = new ShellView();
+      this.shellView.render();
+      $('body').html(this.shellView.el);
       this.$content = $("#content");
     },
 
@@ -27,7 +27,9 @@ define([
         this.contactView = new ContactView();
       }
       this.contactView.render();
-      this.$content.html(this.contactView.el);
+      console.log(this.shellView);
+      console.log(typeof this.shellView);
+      this.shellView.selectMenuItem('contact-menu');
     },
 
   });
