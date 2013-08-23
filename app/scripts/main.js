@@ -29,7 +29,7 @@ require.config({
 require([
   'backbone',
   'routes/router-router'
-], function (Backbone, Router) {
-  new Router();
+], function (Backbone, AppRouter) {
+  new AppRouter();
   Backbone.history.start();
 });

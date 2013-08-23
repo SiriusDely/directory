@@ -17,15 +17,14 @@ define([
     },
 
     initialize: function () {
-      console.log('initialize');
+      console.log('AppRouter:initialize');
       this.shellView = new ShellView();
-      this.shellView.render();
-      $('body').html(this.shellView.el);
+      $('body').html(this.shellView.render().el);
       this.$content = $("#content");
     },
 
     home: function () {
-      console.log('home');
+      console.log('AppRouter:home');
       if (!this.homeView) {
         this.homeView = new HomeView();
       } else {
@@ -36,7 +35,7 @@ define([
     },
 
     contact: function () {
-      console.log('contact');
+      console.log('AppRouter:contact');
       if (!this.contactView) {
         this.contactView = new ContactView();
       } else {
