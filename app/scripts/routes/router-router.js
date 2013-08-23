@@ -4,13 +4,16 @@ define([
   'jquery',
   'backbone',
   'views/shell-view',
+  'views/home-view',
   'views/contact-view'
-], function ($, Backbone, ShellView, ContactView) {
+], function ($, Backbone, ShellView, HomeView, ContactView) {
   'use strict';
 
   var Router = Backbone.Router.extend({
     routes: {
-      "contact": "contact"
+      "":         "home",
+      "home":     "home",
+      "contact":  "contact"
     },
 
     initialize: function () {
@@ -21,14 +24,25 @@ define([
       this.$content = $("#content");
     },
 
+    home: function () {
+      console.log('home');
+      if (!this.homeView) {
+        this.homeView = new HomeView();
+      } else {
+        console.log('reusing homeView');
+      }
+      this.homeView.render();
+      this.shellView.selectMenuItem('home-menu');
+    },
+
     contact: function () {
       console.log('contact');
       if (!this.contactView) {
         this.contactView = new ContactView();
+      } else {
+        console.log('reusing contactView');
       }
       this.contactView.render();
-      console.log(this.shellView);
-      console.log(typeof this.shellView);
       this.shellView.selectMenuItem('contact-menu');
     },
 
