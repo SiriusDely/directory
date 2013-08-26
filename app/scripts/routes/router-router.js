@@ -11,9 +11,10 @@ define([
 
   var Router = Backbone.Router.extend({
     routes: {
-      "":         "home",
-      "home":     "home",
-      "contact":  "contact"
+      "":               "home",
+      "home":           "home",
+      "contact":        "contact",
+      "employees/:id":  "employeeDetails"
     },
 
     initialize: function () {
@@ -35,6 +36,7 @@ define([
       }
       this.homeView.render();
       this.shellView.selectMenuItem('home-menu');
+      this.shellView.listenTo(this.homeView, 'showMe', this.shellView.search);
     },
 
     contact: function () {
@@ -46,6 +48,20 @@ define([
       }
       this.contactView.render();
       this.shellView.selectMenuItem('contact-menu');
+    },
+
+    employeeDetails: function (id) {
+      var employee = new directory.Employee({id: id});
+      var self = this;
+      employee.fetch({
+        success: function (data) {
+          console.log(data);
+          // Note that we could also 'recycle' the same instance of EmployeeFullView
+          // instead of creating new instances
+          self.$content.html(new directory.EmployeeView({model: data}).render().el);
+        }
+      });
+      directory.shellView.selectMenuItem();
     }
 
   });

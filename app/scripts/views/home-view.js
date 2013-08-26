@@ -14,7 +14,7 @@ define([
     el : '#inside',
 
     events:{
-      "click #showMeBtn":"showMeBtnClick"
+      "click #showMeBtn" : "showMeBtnClick"
     },
 
     render:function () {
@@ -24,6 +24,7 @@ define([
 
     showMeBtnClick:function (event) {
       console.log("showMeBtnClick");
+      this.trigger('showMe');
       // app.shellView.search();
       // event.preventDefault();
     }
