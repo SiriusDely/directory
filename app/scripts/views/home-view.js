@@ -24,7 +24,8 @@ define([
 
     showMeBtnClick:function (event) {
       console.log("showMeBtnClick");
-      event.preventDefault();
+      // app.shellView.search();
+      // event.preventDefault();
     }
 
   });

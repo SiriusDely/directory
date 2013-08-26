@@ -14,13 +14,13 @@ define([
     tagName: "li",
 
     initialize:function () {
-      console.log("EmployeeListItemView:initialize");
+      // console.log("EmployeeListItemView:initialize");
       this.model.on("change", this.render, this);
       this.model.on("destroy", this.close, this);
     },
 
     render:function () {
-      console.log("EmployeeListItemView:render");
+      // console.log("EmployeeListItemView:render");
       this.$el.html(this.template(this.model.attributes));
       return this;
     }

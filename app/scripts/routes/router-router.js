@@ -20,6 +20,9 @@ define([
       console.log('AppRouter:initialize');
       this.shellView = new ShellView();
       $('body').html(this.shellView.render().el);
+      $('body').click(function () {
+        $('.dropdown').removeClass("open");
+      });
       this.$content = $("#content");
     },
 

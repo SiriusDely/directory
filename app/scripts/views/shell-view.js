@@ -13,13 +13,19 @@ define([
   var ShellView = Backbone.View.extend({
     template: JST['app/scripts/templates/shell.ejs'],
 
-    el : '#content',
+    // el : '#content',
 
     initialize: function () {
       console.log("ShellView:initialize");
       this.employeesCollection = new EmployeesCollection();
-      this.employeesCollection.fetch({reset: true, data: {name: "s"}});
+      // this.employeesCollection.fetch({reset: true, data: {name: "s"}});
       this.employeeListView = new EmployeeListView({model: this.employeesCollection, className: 'dropdown-menu'});
+    },
+
+    events: {
+      "click .brand": "search",
+      "keyup .search-query": "search",
+      "keypress .search-query": "onkeypress"
     },
 
     render: function () {
@@ -29,19 +35,21 @@ define([
       return this;
     },
 
-    events: {
-      "keyup .search-query": "search",
-      "keypress .search-query": "onkeypress"
-    },
-
     search: function (event) {
-      event.preventDefault();
-      console.log("ShellView:search");
+      var key = $('#searchText').val();
+      this.employeesCollection.fetch({reset: true, data: {name: key}});
+      var self = this;
+      setTimeout(function () {
+        $('.dropdown').addClass('open');
+      });
+      console.log("ShellView:search " + key);
     },
 
     onkeypress: function (event) {
-      event.preventDefault();
       console.log("ShellView:onkeypress");
+      if (event.keyCode === 13) { // enter key pressed
+        event.preventDefault();
+      }
     },
 
     selectMenuItem: function(menuItem) {
