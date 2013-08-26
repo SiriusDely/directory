@@ -5,8 +5,10 @@ define([
   'backbone',
   'views/shell-view',
   'views/home-view',
-  'views/contact-view'
-], function ($, Backbone, ShellView, HomeView, ContactView) {
+  'views/contact-view',
+  'views/employee-view',
+  'models/employee-model'
+], function ($, Backbone, ShellView, HomeView, ContactView, EmployeeView, EmployeeModel) {
   'use strict';
 
   var Router = Backbone.Router.extend({
@@ -51,17 +53,17 @@ define([
     },
 
     employeeDetails: function (id) {
-      var employee = new directory.Employee({id: id});
+      var employee = new EmployeeModel({id: id});
       var self = this;
       employee.fetch({
         success: function (data) {
           console.log(data);
           // Note that we could also 'recycle' the same instance of EmployeeFullView
           // instead of creating new instances
-          self.$content.html(new directory.EmployeeView({model: data}).render().el);
+          self.$content.html(new EmployeeView({model: data}).render().el);
         }
       });
-      directory.shellView.selectMenuItem();
+      this.shellView.selectMenuItem();
     }
 
   });
